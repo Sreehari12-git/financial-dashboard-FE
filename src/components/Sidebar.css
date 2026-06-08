@@ -1,0 +1,113 @@
+/* Sidebar.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+
+.sidebar {
+  background: #161209;
+  width: 220px;
+  height: 100vh;
+  padding: 1rem;           
+  display: flex;
+  flex-direction: column;
+  font-family: 'Syne', sans-serif;
+  border-right: 0.5px solid rgba(255, 166, 0, 0.25);
+  box-sizing: border-box;
+  overflow: hidden;        
+}
+
+.sidebar-brand-name {
+  font-size: 25px;
+  font-weight: 700;
+  color: #ffa600;
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+
+.sidebar-brand-sub {
+  font-size: 10px;
+  color: #8a7550;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #8a7550;
+  text-decoration: none;
+  border: 0.5px solid transparent;
+  transition: background 0.15s, color 0.15s;
+}
+
+.sidebar-nav a:hover {
+  background: rgba(255, 166, 0, 0.12);
+  color: #f5e6c8;
+}
+
+.sidebar-nav a.active {
+  background: rgba(255, 166, 0, 0.12);
+  color: #ffa600;
+  border: 0.5px solid rgba(255, 166, 0, 0.25);
+}
+
+.sidebar-divider {
+  border: none;
+  border-top: 0.5px solid rgba(255, 166, 0, 0.2);
+  margin: 1rem 0;
+}
+
+.sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: auto
+}
+
+.sidebar-bottom button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffa600;
+  background: rgba(255, 166, 0, 0.08);
+  border: 0.5px solid rgba(255, 166, 0, 0.3);
+  transition: background 0.15s, color 0.15s;
+  cursor: pointer;
+  width: 100%;
+  font-family: 'Syne', sans-serif;
+  text-align: left;
+}
+
+.sidebar-bottom button:hover {
+  background: rgba(255, 166, 0, 0.2);
+  color: #ffbe45;
+  border-color: rgba(255, 166, 0, 0.5);
+}
+
+.app-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  background: #ffffff;
+}

@@ -1,0 +1,175 @@
+
+.ledger-container {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(26, 18, 8, 0.08);
+  font-family: Georgia, 'Times New Roman', serif;
+  width: 100%;
+  max-width: 560px;        
+  max-height: 520px;       
+  overflow-y: auto;        
+}
+
+.ledger-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.ledger-header h2 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1208;
+  margin: 0;
+}
+
+.ledger-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.export-btn {
+  padding: 6px 12px;
+  border: 1px solid #c97d10;
+  background: transparent;
+  color: #c97d10;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.export-btn:hover {
+  background: rgba(201, 125, 16, 0.08);
+}
+
+.add-btn {
+  padding: 6px 12px;
+  border: none;
+  background: #1a1208;
+  color: #c97d10;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-btn:hover {
+  background: #2e2010;
+}
+
+.ledger-table-head {
+  display: grid;
+  column-gap: 8px;
+  grid-template-columns: 2fr 1.2fr 1.1fr 0.8fr 1.3fr;
+  padding: 8px 12px;
+  background: #f7f3ee;
+  border-radius: 8px;
+  margin-bottom: 2px;
+}
+
+.ledger-table-head p {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #7a6a50;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.ledger-row {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr 1.1fr 0.8fr 1.3fr;
+  column-gap: 8px;
+  align-items: center;
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0ebe3;
+  transition: background 0.15s ease;
+}
+
+.ledger-row:last-child {
+  border-bottom: none;
+}
+
+.ledger-row:hover {
+  background: #fdf9f4;
+  border-radius: 8px;
+}
+
+.asset-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.asset-info h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1208;
+  margin: 0 0 2px 0;
+}
+
+.asset-info span {
+  font-size: 10px;
+  color: #9e8e76;
+  font-family: 'Courier New', monospace;
+}
+
+.category-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  background: #f0ebe3;
+  color: #5a4a30;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.status {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status.active {
+  color: #2e7d32;
+}
+
+.status.idle {
+  color: #9e8e76;
+}
+
+.status.leased {
+  color: #c97d10;
+}
+
+.valuation {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1208;
+}
+
+.yield {
+  font-size: 13px;
+  font-weight: 700;
+  color: #2e7d32;
+}
+
+.member {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1208;
+  display: flex;
+  flex-direction: column;
+}
+
+.member span {
+  font-size: 10px;
+  color: #9e8e76;
+  font-weight: 400;
+}
+

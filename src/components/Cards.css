@@ -1,0 +1,110 @@
+/* Sidebar-matching color palette */
+/* Dark background: #1a1208  Accent: #c97d10 (gold/orange)  Text: #f5e6c8 */
+
+.cards-container {
+  display: flex;
+  gap: 20px;
+  padding: 28px 32px;
+  background-color: #f4f1eb;
+}
+
+.dashboard-card {
+  flex: 1;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px 28px;
+  border-top: 4px solid transparent;
+  box-shadow: 0 2px 12px rgba(26, 18, 8, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(26, 18, 8, 0.13);
+}
+
+/* Border colors matching sidebar accent tones */
+.green-border {
+  border-top-color: #c97d10;
+}
+
+.red-border {
+  border-top-color: #8b1a1a;
+}
+
+.blue-border {
+  border-top-color: #1a3a5c;
+}
+
+/* Card header */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header p {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #7a6a50;
+  margin: 0;
+}
+
+/* Icon colors per card */
+.green-border .card-header svg {
+  color: #c97d10;
+  background: rgba(201, 125, 16, 0.1);
+  padding: 6px;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+}
+
+.red-border .card-header svg {
+  color: #8b1a1a;
+  background: rgba(139, 26, 26, 0.1);
+  padding: 6px;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+}
+
+.blue-border .card-header svg {
+  color: #1a3a5c;
+  background: rgba(26, 58, 92, 0.1);
+  padding: 6px;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+}
+
+/* Value */
+.dashboard-card h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1208;
+  margin: 0;
+  letter-spacing: -0.02em;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.green-text {
+  color: #c97d10 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cards-container {
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .dashboard-card h1 {
+    font-size: 26px;
+  }
+}
