@@ -3,6 +3,7 @@ import "./Login.css"
 import { useState } from "react";
 import { loginUser } from "../api/auth";
 import Register from "../components/Register";
+import Cookies from "js-cookie";
 
 const Login = () => {
 
@@ -17,9 +18,8 @@ const Login = () => {
 
   const login = async() => {
     try {
-      await loginUser(email,password);
+      const data = await loginUser(email, password);
       navigate("/family-tree");
-
     }
      catch(error) {
       console.log(error);
