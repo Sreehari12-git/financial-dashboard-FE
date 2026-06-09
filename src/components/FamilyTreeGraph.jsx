@@ -97,7 +97,8 @@ const TreeBranch = ({ node, onSelect }) => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
+      {/* Self + Spouse row */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0px', position: 'relative' }}>
         <MemberCard
           user={node.user}
           relation={node.relation ?? 'self'}
@@ -114,22 +115,18 @@ const TreeBranch = ({ node, onSelect }) => {
             />
           </div>
         ))}
-
-        {children.length > 0 && (
-          <div style={{
-            position: 'absolute',
-            bottom: '-20px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: '2px',
-            height: '20px',
-            backgroundColor: '#94a3b8',
-          }} />
-        )}
       </div>
 
       {children.length > 0 && (
-        <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '20px', position: 'relative' }}>
+        <div style={{
+          width: '2px',
+          height: '20px',
+          backgroundColor: '#94a3b8',
+        }} />
+      )}
+
+      {children.length > 0 && (
+        <div style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
           {children.map((child, index) => {
             const isFirst = index === 0;
             const isLast = index === children.length - 1;
