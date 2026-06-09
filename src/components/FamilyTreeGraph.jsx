@@ -95,10 +95,14 @@ const TreeBranch = ({ node, onSelect }) => {
     m => m.relation !== 'wife' && m.relation !== 'husband'
   );
 
+  // Calculate center of the couple for the vertical line
+  const hasSpouse = spouses.length > 0;
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      
       {/* Self + Spouse row */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0px', position: 'relative' }}>
+      <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
         <MemberCard
           user={node.user}
           relation={node.relation ?? 'self'}
@@ -117,14 +121,18 @@ const TreeBranch = ({ node, onSelect }) => {
         ))}
       </div>
 
+      {/* Vertical line down from couple center */}
       {children.length > 0 && (
         <div style={{
           width: '2px',
-          height: '20px',
+          height: '28px',
           backgroundColor: '#94a3b8',
+          alignSelf: hasSpouse ? 'center' : 'center',
+          marginLeft: hasSpouse ? '82px' : '0', // shift to center of couple
         }} />
       )}
 
+      {/* Children row */}
       {children.length > 0 && (
         <div style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
           {children.map((child, index) => {
