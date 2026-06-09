@@ -15,20 +15,28 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
 
-  const login = async() => {
+  const [loading, setLoading] = useState(false);
+  const login = async () => {
     try {
-      await loginUser(email,password);
+      setLoading(true);
+        const { token, refreshToken } = await loginUser(email, password);
+        // Store tokens in cookies (client‑side)
+        const tokenExpires = new Date(Date.now() + 2 * 60 * 60 * 1000).toUTCString();
+        document.cookie = `token=${token}; expires=${tokenExpires}; path=/; SameSite=Strict`;
+        if (refreshToken) {
+          const refreshExpires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString();
+          document.cookie = `refreshToken=${refreshToken}; expires=${refreshExpires}; path=/; SameSite=Strict`;
+        }
       navigate("/family-tree");
-
-    }
-     catch(error) {
+    } catch (error) {
       console.log(error);
       alert(
-        error.response?.data?.message ||
-        "Login failed"
+        error?.response?.data?.message || "Login failed"
       );
+    } finally {
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="login-page">
