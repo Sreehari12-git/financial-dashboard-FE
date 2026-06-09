@@ -4,7 +4,7 @@ import { getMemberProfile } from '../api/profileApi';
 
 const MemberCard = ({ user, relation, onClick }) => {
   const getColors = (rel) => {
-      switch (rel) {
+      switch (rel?.toLowerCase()) {
         case 'self':
           return {
             bg: '#2563eb',
