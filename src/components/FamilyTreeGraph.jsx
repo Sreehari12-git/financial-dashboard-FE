@@ -4,83 +4,83 @@ import { getMemberProfile } from '../api/profileApi';
 
 const MemberCard = ({ user, relation, onClick }) => {
   const getColors = (rel) => {
-    switch (rel) {
-      case 'self':
-        return {
-          bg: '#2563eb',
-          text: '#ffffff',
-          border: '#1d4ed8'
-        };
+      switch (rel) {
+        case 'self':
+          return {
+            bg: '#2563eb',
+            text: '#ffffff',
+            border: '#1d4ed8'
+          };
 
-      case 'wife':
-        return {
-          bg: '#fdf2f8',
-          text: '#db2777',
-          border: '#fbcfe8'
-        };
+        case 'wife':
+          return {
+            bg: '#fdf2f8',
+            text: '#db2777',
+            border: '#fbcfe8'
+          };
 
-      case 'son':
-        return {
-          bg: '#ecfdf5',
-          text: '#059669',
-          border: '#a7f3d0'
-        };
+        case 'son':
+          return {
+            bg: '#ecfdf5',
+            text: '#059669',
+            border: '#a7f3d0'
+          };
 
-      case 'daughter':
-        return {
-          bg: '#ff6973',
-          text: '#7c0be6',
-          border: '#f50521'
-        };
+        case 'daughter':
+          return {
+            bg: '#ff6973',
+            text: '#7c0be6',
+            border: '#f50521'
+          };
 
-      default:
-        return {
-          bg: '#ffffff',
-          text: '#334155',
-          border: '#e2e8f0'
-        };
-    }
-  };
+        default:
+          return {
+            bg: '#ffffff',
+            text: '#334155',
+            border: '#e2e8f0'
+          };
+      }
+    };
 
-  const colors = getColors(relation);
+    const colors = getColors(relation);
 
-  return (
-    <div
-      onClick={onClick}
-      style={{
-        cursor: 'pointer',
-        backgroundColor: colors.bg,
-        color: colors.text,
-        borderColor: colors.border,
-        borderWidth: '1px',
-        borderStyle: 'solid',
-        padding: '10px 20px',
-        borderRadius: '12px',
-        minWidth: '120px',
-        textAlign: 'center',
-        boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)',
-        fontWeight: '600',
-        fontSize: '14px',
-      }}
-    >
-      <div style={{ textTransform: 'capitalize' }}>
-        {user}
-      </div>
-
-      {relation && (
-        <div
-          style={{
-            fontSize: '11px',
-            opacity: 0.7,
-            marginTop: '2px'
-          }}
-        >
-          {relation}
+    return (
+      <div
+        onClick={onClick}
+        style={{
+          cursor: 'pointer',
+          backgroundColor: colors.bg,
+          color: colors.text,
+          borderColor: colors.border,
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          padding: '10px 20px',
+          borderRadius: '12px',
+          minWidth: '120px',
+          textAlign: 'center',
+          boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)',
+          fontWeight: '600',
+          fontSize: '14px',
+        }}
+      >
+        <div style={{ textTransform: 'capitalize' }}>
+          {user}
         </div>
-      )}
-    </div>
-  );
-};
+
+        {relation && (
+          <div
+            style={{
+              fontSize: '11px',
+              opacity: 0.7,
+              marginTop: '2px'
+            }}
+          >
+            {relation}
+          </div>
+        )}
+      </div>
+    );
+  };
 
 const TreeBranch = ({ node, onSelect }) => {
   if (!node) return null;
@@ -94,8 +94,6 @@ const TreeBranch = ({ node, onSelect }) => {
   const children = members.filter(
     m => m.relation !== 'wife' && m.relation !== 'husband'
   );
-
-  const hasSpouse = spouses.length > 0;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -116,22 +114,22 @@ const TreeBranch = ({ node, onSelect }) => {
             />
           </div>
         ))}
+
+        {children.length > 0 && (
+          <div style={{
+            position: 'absolute',
+            bottom: '-20px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '2px',
+            height: '20px',
+            backgroundColor: '#94a3b8',
+          }} />
+        )}
       </div>
 
-      {/* Vertical line down from couple center */}
       {children.length > 0 && (
-        <div style={{
-          width: '2px',
-          height: '28px',
-          backgroundColor: '#94a3b8',
-          alignSelf: hasSpouse ? 'center' : 'center',
-          marginLeft: hasSpouse ? '82px' : '0', // shift to center of couple
-        }} />
-      )}
-
-      {/* Children row */}
-      {children.length > 0 && (
-        <div style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '20px', position: 'relative' }}>
           {children.map((child, index) => {
             const isFirst = index === 0;
             const isLast = index === children.length - 1;
@@ -178,7 +176,7 @@ const TreeBranch = ({ node, onSelect }) => {
   );
 };
 
-const MemberSidebar = ({ member, onClose }) => {
+ const MemberSidebar = ({ member, onClose }) => {
   if (!member) return null;
 
   return (
@@ -356,81 +354,79 @@ const MemberSidebar = ({ member, onClose }) => {
   );
 };
 
-function FamilyTreeGraph() {
-  const [familyData, setFamilyData] = useState(null);
-  const [selectedMember, setSelectedMember] = useState(null);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [error, setError] = useState(null);
+  function FamilyTreeGraph() {
+    const [familyData, setFamilyData] = useState(null);
+    const [selectedMember, setSelectedMember] = useState(null);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetchFamilyTree();
-  }, []);
+    useEffect(() => {
+      fetchFamilyTree();
+    }, []);
 
-  const fetchFamilyTree = async () => {
-    try {
-      const data = await getFamilyTree();
-      setFamilyData(data);
-    } catch (err) {
-      console.log(err);
-      setError("Failed to load family tree");
+    const fetchFamilyTree = async () => {
+      try {
+        const data = await getFamilyTree();
+        setFamilyData(data);
+      } catch (err) {
+        console.log(err);
+        setError("Failed to load family tree");
+      }
+    };
+    
+    const openMember = async (id) => {
+      try {
+        const data = await getMemberProfile(id);
+        setSelectedMember(data);
+        setIsSidebarOpen(true);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (error) {
+      return (
+        <p style={{ color: 'red' }}>
+          {error}
+        </p>
+      );
     }
-  };
 
-  const openMember = async (id) => {
-    try {
-      const data = await getMemberProfile(id);
-      setSelectedMember(data);
-      setIsSidebarOpen(true);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  if (error) {
     return (
-      <p style={{ color: 'red' }}>
-        {error}
-      </p>
+      <div
+        style={{
+          padding: '60px 20px',
+          background: '#f8fafc',
+          minHeight: '100vh',
+          textAlign: 'center'
+        }}
+      >
+        <div
+          style={{
+            display: 'inline-block',
+            overflowX: 'auto'
+          }}
+        >
+          {familyData ? (
+            <TreeBranch
+              node={familyData}
+              onSelect={openMember}
+            />
+          ) : (
+            <p>Loading...</p>
+          )}
+        </div>
+
+        <MemberSidebar
+  member={selectedMember}
+  onClose={() => {
+    setIsSidebarOpen(false);
+    setSelectedMember(null);
+  }}
+/>
+
+      </div>
     );
   }
 
-  return (
-    <div
-      style={{
-        padding: '60px 20px',
-        background: '#f8fafc',
-        minHeight: '100vh',
-        textAlign: 'center'
-      }}
-    >
-      <div
-        style={{
-          display: 'inline-block',
-          overflowX: 'auto'
-        }}
-      >
-        {familyData ? (
-          <TreeBranch
-            node={familyData}
-            onSelect={openMember}
-          />
-        ) : (
-          <p>Loading...</p>
-        )}
-      </div>
-
-      <MemberSidebar
-        member={selectedMember}
-        onClose={() => {
-          setIsSidebarOpen(false);
-          setSelectedMember(null);
-        }}
-      />
-
-    </div>
-  );
-}
-
-export default FamilyTreeGraph;
-
-
+  export default FamilyTreeGraph;
