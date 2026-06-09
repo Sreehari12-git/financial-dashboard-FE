@@ -36,10 +36,6 @@ export const registerUser = async(fullName, email,password,age,occupation,annual
     }
 }
 
-export const logout = async() => {
-    return await api.post("/logout");
-}
-
 export const getCurrentUser = async() => {
     try {
         const response = await api.get("/me");
@@ -51,3 +47,13 @@ export const getCurrentUser = async() => {
     }
 }
 
+export const logout = async() => {
+    try{
+        const response = await api.post("/logout");
+        return response.data;
+    }
+    catch(error) {
+        console.log(error);
+        throw error;
+    }
+}
