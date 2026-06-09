@@ -40,3 +40,14 @@ export const logout = async() => {
     return await api.post("/logout");
 }
 
+export const getCurrentUser = async() => {
+    try {
+        const response = await api.get("/me");
+        return response.data;
+    }
+    catch(error) {
+        console.log(error);
+        throw error;
+    }
+}
+

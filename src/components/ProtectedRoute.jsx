@@ -1,12 +1,31 @@
-import { Navigate, Outlet } from 'react-router-dom';
-import Cookies from "js-cookie"
+import { useEffect, useState } from "react";
+import { Navigate, Outlet } from "react-router-dom";
+import { getCurrentUser } from "../api/auth";
 
 export const ProtectedRoute = () => {
-  
-    const token = Cookies.get("token");
+    const [authenticated, setAuthenticated] = useState(false);
+    const [loading, setLoading] = useState(true);
 
-    if(!token) {
-        return <Navigate to= "/" replace/>
+    useEffect(() => {
+        const fetchUser = async() => {
+            try {
+                await getCurrentUser();
+                setAuthenticated(true);
+            } catch {
+                setAuthenticated(false);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchUser();
+    }, [])
+
+    if(loading) {
+        return <div>Loading...</div>;
+    }
+
+    if(!authenticated) {
+        return <Navigate to="/" replace/>
     }
 
     return <Outlet/>
