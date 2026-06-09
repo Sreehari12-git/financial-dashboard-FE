@@ -19,14 +19,14 @@ const Login = () => {
   const login = async () => {
     try {
       setLoading(true);
-        const { token, refreshToken } = await loginUser(email, password);
-        // Store tokens in cookies (client‑side)
-        const tokenExpires = new Date(Date.now() + 2 * 60 * 60 * 1000).toUTCString();
-        document.cookie = `token=${token}; expires=${tokenExpires}; path=/; SameSite=Strict`;
-        if (refreshToken) {
-          const refreshExpires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString();
-          document.cookie = `refreshToken=${refreshToken}; expires=${refreshExpires}; path=/; SameSite=Strict`;
-        }
+        // const { token, refreshToken } = await loginUser(email, password);
+        // // Store tokens in cookies (client‑side)
+        // const tokenExpires = new Date(Date.now() + 2 * 60 * 60 * 1000).toUTCString();
+        // document.cookie = `token=${token}; expires=${tokenExpires}; path=/; SameSite=Strict`;
+        // if (refreshToken) {
+        //   const refreshExpires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString();
+        //   document.cookie = `refreshToken=${refreshToken}; expires=${refreshExpires}; path=/; SameSite=Strict`;
+        // }
       navigate("/family-tree");
     } catch (error) {
       console.log(error);
